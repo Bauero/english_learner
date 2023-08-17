@@ -1,3 +1,29 @@
+# BACKGROUND TASKS #
+
+# TODO Mechanizm losowania słówka
+# TODO Odgadywanie tłumaczenia polskiego
+# TODO Ogdadywanie tłumaczenia angielskieg (z podpowiedzią pierwszej litery)
+# TODO Zapisywanie postępów do pliku Excela NA BIEŻĄCO !
+# TODO Omijanie słówek bez tłumaczenia
+
+# INTERFEJS GRAFICZNY #
+
+# TODO Wybór trybu pracy
+#	- wybór polskiego słówka i napisanie odpowiadającyh mu tłumaczeń
+# 	- wybór angielskiego słówka i napisanie odpowiadających mu tłumaczń
+#	- wypisywanie słówek które zaczynają się na daną literę
+#	- powyższe opcje z możliwością wyboru typu części mowy
+# TODO Wyświetlanie słówka które próbujemy odgadnąć
+# TODO Wyświetlanie słówka które my podajemy jako odpowiedź
+# TODO Weryfikacja naszej odpowiedzi w trybie natychmiastowym (możliwe do zmiany w ustawieniach)
+
+# DODATKOWE - 'JAK STARCZY CZASU' #
+
+# Możliwość zmiany ustawień z poziou okienka ustawień
+# 	- wybór szaty graficznej
+# Dodanie możliwości wczytywania danych w sposób autmoatyczny dla urzytkownika
+# Przeglądanie naszej bazy słówek
+
 import PySimpleGUI as sg
 from openpyxl import load_workbook
 
@@ -24,19 +50,6 @@ wkbk = load_workbook("slowka_angielski_C1.xlsm")
 sheet = wkbk.get_sheet_by_name("100k")
 #dostęp do zmiennej o tej pozycji
 #sheet["A10"].value
-
-"""
-Do zaprogramowania:
-- wylosowanie konkretnego słówka (powinno ono losować przede wszyskim takie które nie 
-    były zbyt często losowane, i sporadycznie pokazywać te które już są oznaczone jako zapoznane)
-    - możliwość wylosowania słówka, które jest po angielsku i które ma podaną pierwszą literę
-        ale nie jest w całości widoczne
-	- możliwość wylosowania słówka po polsku do przetłumaczenia na angielski (w całości)
-- losowanie powinno uwzględniać ilość pokayzwanych słówek - tak by słówka które juz sie pojawiały
-    nie były co chwila wyświetlane
-- Możliwość sprawdzenia jakie słówka były pokazywane podczas ostatniej sesji nauki
-- Zapisywanie postępów do naszego pliku
-"""
 
 sg.theme('DarkAmber')
 cz_nagl_ramka = "_ 14"
