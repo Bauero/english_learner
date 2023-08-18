@@ -27,24 +27,32 @@
 import PySimpleGUI as sg
 from openpyxl import load_workbook
 
-# Legaly stolen from:
-# https://github.com/rr-/screeninfo/blob/master/screeninfo/enumerators/osx.py
+def pick_word(): ...
 
-from AppKit import NSScreen
+def get_display_resolution() -> tuple:
+	"""
+	This function is responsible to get current resolution of the screen
+	It is run on the beginning to determine how big the window should be
+	given how many percentage of width and heigh window should be
+	"""
+	# Stolen from:
+	# https://github.com/rr-/screeninfo/blob/master/screeninfo/enumerators/osx.py
+	from AppKit import NSScreen
 
-screens = NSScreen.screens()
-f = screens[0].frame
-if callable(f):
-    f = f()
-    width=int(f.size.width)
-    height=int(f.size.height)
+	screens = NSScreen.screens()
+	f = screens[0].frame
+	if callable(f):
+		f = f()
+		return int(f.size.width),int(f.size.height)
+
+def get_window_size(width_percent : float, heigh_percent : float) -> tuple:
+	width, height = get_display_resolution()
+	mul_width = int(width * width_prop)
+	mul_height = int(height * height_prop)
+	return mul_width, mul_height
 
 width_prop = height_prop = 0.5
-mul_width = int(width * width_prop)
-mul_height = int(height * height_prop)
-rozmiary_okna = (mul_width,mul_height)
-
-
+window_size = get_window_size(width_prop, width_prop)
 
 wkbk = load_workbook("slowka_angielski_C1.xlsm")
 sheet = wkbk.get_sheet_by_name("100k")
@@ -59,7 +67,7 @@ layout = [
 	  "kodu tak by można było zobaczyć ramy mojego pola tekstowego",size=(40,3))]
 ]
 
-window = sg.Window('Porównanie algorytmów Merge Sort i Quick Sort', layout, size=rozmiary_okna)
+window = sg.Window('Porównanie algorytmów Merge Sort i Quick Sort', layout, size=window_size)
 
 while True:
 	ponow_sortowanie = False
