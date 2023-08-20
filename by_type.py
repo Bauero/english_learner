@@ -50,8 +50,8 @@ for kat in kat_slowoPowt:
         #     wiersze.append("")
         # wiersze[wiersz+1] += kat_slowoPowt[kat][wiersz][0] + "\t"
 
-for l in wiersze:
-    plik.write(l.lower()+"\n")
+# for l in wiersze:
+#     plik.write(l.lower()+"\n")
 
 workbook.save("slowka_angielski_C1.xlsx")
 # plik.close()
